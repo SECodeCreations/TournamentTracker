@@ -1,0 +1,57 @@
+﻿<Window x:Class="TrackerUI.CreateTournamentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrackerUI"
+        mc:Ignorable="d"
+        Title="Create Tournament" Height="800" Width="850" Background="#FF2E2E2E" FontSize="16" Icon="/iconfinder_icon-clipboard_211649.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="2.5*" />
+            <ColumnDefinition Width="1.5*" />            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="1.4*" />
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="HeaderLabel" Content="Create Tournament" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="28" Height="auto" Width="auto"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Margin="20,0,0,5" x:Name="TournamentNameLabel" Content="Tournament Name" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
+        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Margin="20,0,0,0" x:Name="TournamentNameTextBox" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="auto" FontSize="20"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Margin="20,-5,0,0" x:Name="EntryFeeLabel" Content="Entry Fee" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
+        <TextBox Grid.Row="3" Grid.Column="0" x:Name="EntryFeeTextBox" Text="0" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="142" FontSize="20"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Margin="20,-7,0,0" x:Name="SelectTeamLabel" Content="Select Team" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="auto" Width="auto"/>        
+        <Button Grid.Row="4" Grid.Column="0" Margin="20,0,0,0" x:Name="CreateNewTeamButton" Content="Create New" HorizontalAlignment="Right" VerticalAlignment="Top" Width="91" FontSize="14"/>
+        <ComboBox Grid.Row="4" Grid.Column="0" Margin="20,0,0,0" x:Name="SelectTeamDropdown" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="20"/>
+
+        <Button Grid.Row="6" Grid.Column="0" x:Name="AddTeamButton" Content="Add Team" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="120" FontSize="20"/>
+        <Button Grid.Row="7" Grid.Column="0" x:Name="CreatePrizeButton" Content="Create Prize" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="120" FontSize="20"/>
+
+        <ListBox Grid.Row="3" Grid.Column="2" Grid.RowSpan="2" Margin="10,-30,0,0" x:Name="TournamentPlayersListBox" HorizontalAlignment="Stretch" />
+        <Label Grid.Row="2" Grid.Column="2" Margin="10,0,0,0" x:Name="TournamentPlayersLabel" Content="Teams / Players" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" />
+        <Button Grid.Row="3" Grid.Column="3" Margin="10,0,0,0" x:Name="DeleteSelectedPlayersButton" Content="Delete&#xD;&#xA;Selected" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="55" Width="120" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+
+        <Label Grid.Row="5" Grid.Column="2" Margin="10,0,0,0" x:Name="PrizesLabel" Content="Prizes" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
+        <ListBox Grid.Row="6" Grid.Column="2" Grid.RowSpan="3" Margin="10,0,0,0" x:Name="PrizesListBox" HorizontalAlignment="Stretch" />
+        <Button Grid.Row="7" Grid.Column="3" Margin="10,0,0,0" x:Name="DeleteSelectedPrizeButton" Content="Delete&#xD;&#xA;Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Height="55" Width="120" FontSize="18"/>
+
+        <Button Grid.Row="10" Grid.ColumnSpan="5" Margin="0,0,0,0" x:Name="CreateTournamentButton" Content="Create Tournament" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Width="200" FontSize="20"/>
+
+    </Grid>
+</Window>

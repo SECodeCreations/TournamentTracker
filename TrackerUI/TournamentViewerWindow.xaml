@@ -1,0 +1,54 @@
+﻿<Window x:Class="TrackerUI.TournamentViewerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrackerUI"
+        mc:Ignorable="d"
+        Title="Tournament Viewer" Height="500" Width="750" Background="#FF2E2E2E" FontSize="16" Icon="/iconfinder_icon-clipboard_211649.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width=".5*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.3*" />
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Margin="20,10,0,0" x:Name="HeaderLabel" Content="Tournament:" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="28" Height="auto" Width="auto"/>
+        <Label  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="-70,10,0,0" x:Name="TournamentNameLabel" Content="'None'" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="28" Height="auto" Width="auto"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" x:Name="RoundLabel" Content="Round" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
+        <ComboBox Grid.Row="2" Grid.Column="0" x:Name="RoundDropdown" HorizontalAlignment="Right" VerticalAlignment="Top" Width="160" FontSize="20"/>
+        <CheckBox  Grid.Row="3" Grid.Column="0" x:Name="UnplayedOnlyCheckbox" Content="Unplayed Only" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" Height="auto" Width="auto" UseLayoutRounding="False" VerticalContentAlignment="Center"/>
+
+        <ListBox Grid.Row="5" Grid.Column="0" Grid.RowSpan="6" Margin="20,0,0,0" x:Name="MatchupListbox"></ListBox>
+
+        <Label Grid.Row="5" Grid.Column="2" x:Name="TeamOneNameLabel" Content="Team One" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
+        <Label Grid.Row="6" Grid.Column="2"  x:Name="TeamOneScoreLabel" Content="Score:" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
+        <TextBox Grid.Row="6" Grid.Column="2" Margin="0,0,40,0" x:Name="TeamOneScoreValueTextBox" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="70" FontSize="20"/>
+
+        <Label Grid.Row="7" Grid.Column="2" Grid.RowSpan="2" Margin="0,0,40,0" x:Name="VersusLabel" Content="-- VS --" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#BFFFFFFF" FontSize="20" FontStyle="Italic"/>
+
+        <Label Grid.Row="9" Grid.Column="2" x:Name="TeamTwoNameLabel" Content="Team Two" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" FontStyle="Normal"/>
+        <Label Grid.Row="10" Grid.Column="2" x:Name="TeamTwoScoreLabel" Content="Score:" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" />
+        <TextBox Grid.Row="10" Grid.Column="2" Margin="0,0,40,0" x:Name="TeamTwoScoreValueTextBox" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Width="70" FontSize="20"/>
+
+        <Button Grid.Row="7" Grid.Column="3" Grid.RowSpan="2" x:Name="FinishMatchButton" Content="Finish Match" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Height="50" Background="#FF80D1FF" BorderBrush="#FF00A3FF" FontWeight="Bold" Foreground="#FF2E2E2E"/>
+    </Grid>
+
+
+</Window>
