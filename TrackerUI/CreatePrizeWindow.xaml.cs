@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TrackerLibrary;
+using TrackerLibrary.DataAccess;
+using TrackerLibrary.Models;
 
 namespace TrackerUI
 {
@@ -22,6 +25,73 @@ namespace TrackerUI
         public CreatePrizeWindow()
         {
             InitializeComponent();
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+        }
+
+        private void CreatePrizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ValidateForm())
+            {
+                PrizeModel model = new PrizeModel(
+                    PlaceNameTextBox.Text,
+                    PlaceNumberTextBox.Text,
+                    PrizeAmountTextBox.Text,
+                    PrizePercentageTextBox.Text);
+
+                GlobalConfig.Connection.CreatePrize(model);
+
+                PlaceNameTextBox.Text = "";
+                PlaceNumberTextBox.Text = "";
+                PrizeAmountTextBox.Text = "0";
+                PrizePercentageTextBox.Text = "0";
+
+            }
+            else
+            {
+                MessageBox.Show("This form has invalid information. Please check and try again.");
+            }
+        }
+
+        private bool ValidateForm()
+        {
+            // Validating all textboxes in the CreatePrize window.
+            bool output = true;
+
+            int placeNumber = 0;
+            bool placeNumberValidNumber = int.TryParse(PlaceNumberTextBox.Text, out placeNumber);  //Use Tuple instead of out?
+            if (placeNumberValidNumber == false)
+            {
+                output = false;
+            }
+            if (placeNumber < 1)
+            {
+                output = false;
+            }
+
+            if (PlaceNameTextBox.Text.Length == 0)
+            {
+                output = false;
+            }
+
+            decimal prizeAmount = 0;
+            double prizePercentage = 0;
+            bool prizeAmountValid = decimal.TryParse(PrizeAmountTextBox.Text, out prizeAmount);
+            bool prizePercentageValid = double.TryParse(PrizePercentageTextBox.Text, out prizePercentage);
+
+            if (prizeAmountValid == false || prizePercentageValid == false)
+            {
+                output = false;
+            }
+            if (prizeAmount <= 0 && prizePercentage <= 0)
+            {
+                output = false;
+            }
+            if (prizePercentage < 0 || prizePercentage > 100)
+            {
+                output = false;
+            }
+
+            return output;
         }
     }
 }

@@ -32,14 +32,14 @@
         <TextBox Grid.Row="3" Grid.Column="1" x:Name="PlaceNameTextBox" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="150" FontSize="20"/>
 
         <Label Grid.Row="4" Grid.Column="0" Margin="0,0,20,0" x:Name="PrizeAmountLabel" Content="Prize Amount:" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
-        <TextBox Grid.Row="4" Grid.Column="1" x:Name="PrizeAmountTextBox" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="150" FontSize="20"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="PrizeAmountTextBox" Text="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="150" FontSize="20"/>
 
         <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="OrLabel" Content="-- OR --" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
 
         <Label Grid.Row="6" Grid.Column="0" Margin="0,0,20,0" x:Name="PrizePercentageLabel" Content="Prize Precent:" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
-        <TextBox Grid.Row="6" Grid.Column="1" x:Name="PrizePercentageTextBox" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="150" FontSize="20"/>
+        <TextBox Grid.Row="6" Grid.Column="1" x:Name="PrizePercentageTextBox" Text="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="150" FontSize="20"/>
 
-        <Button Grid.Row="7" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="CreateTeamButton" Content="Create Team" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="200" FontSize="20"/>
+        <Button Grid.Row="7" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="CreatePrizeButton" Content="Create Prize" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="200" FontSize="20" Background="#FF80D1FF" BorderBrush="#FF00A3FF" FontWeight="Bold" Foreground="#FF2E2E2E" Click="CreatePrizeButton_Click"/>
 
     </Grid>
 </Window>

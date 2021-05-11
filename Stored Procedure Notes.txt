@@ -1,0 +1,103 @@
+spPrizes_GetByTournament
+
+Link table - TournamentPrizes
+Data Table 1 - Prizes
+Data Table 2 - Tournament (NOT REFERENCED)
+
+@TournamentId (Link table)
+
+select dbo.prizes.*
+from dbo.prizes
+inner join dbo.LINKTABLE on dbo.prizes.id = dbo.LINKTABLE.PrizeId
+where dbo.LINKTABLE.TournamentId = @TournamentId
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+spMatchupEntries_GetByMatchup
+
+Link table - MatchupEntries
+Data Table 1 - Matchups
+Data Table 2 - Teams (NOT REFERENCED)
+
+@MatchupId (Link table)
+
+select *
+from dbo.Matchups
+inner join dbo.MatchupEntries on dbo.Matchups.id = dbo.MatchupEntries.PrizeId
+where dbo.MatchupEntries.MatchupId = @MatchupId
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+spMatchups_GetByTournament
+Link table - TournamentEntries
+Data Table 1 - Tournaments
+Data Table 2 - Teams (NOT REFERENCED)
+
+@TournamentId (Link table)
+
+select *
+from dbo.Tournaments
+inner join dbo.TournamentEntries on dbo.Tournaments.id = dbo.TournamentEntries.TeamId
+where dbo.TournamentEntries.TournamentId = @TournamentId
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+spPeople_GetAll
+Data Table 1 - People
+
+@Id
+
+select *
+from dbo.People
+where dbo.People.Id = @Id
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+spTeam_GetByTournament
+
+Link table - TournamentEntries
+Data Table 1 - Teams
+Data Table 2 - Tournaments (NOT REFERENCED)
+
+@TournamentId (Link table)
+
+select *
+from dbo.Teams
+inner join dbo.TournamentEntries on dbo.Teams.id = dbo.TournamentEntries.TeamId
+where dbo.TournamentEntries.TournamentId = @TournamentId
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+spTeamMembers_GetByTeam
+
+Link table - TeamMembers
+Data Table 1 - Teams
+Data Table 2 - People (NOT REFERENCED)
+
+@TeamId (Link table)
+
+select *
+from dbo.Teams
+inner join dbo.TeamMembers on dbo.Teams.id = dbo.TeamMembers.PersonId
+where dbo.TeamMembers.TeamId = @TeamId
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+spTournaments_GetAll
+
+Data Table 1 - Tournaments
+
+@Id
+
+select *
+from dbo.Tournaments
+where dbo.Tournaments.Id = @Id

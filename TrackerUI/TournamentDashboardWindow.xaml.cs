@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TrackerLibrary;
 
 namespace TrackerUI
 {
@@ -20,8 +21,9 @@ namespace TrackerUI
     public partial class TournamentDashboardWindow : Window
     {
         public TournamentDashboardWindow()
-        {
+        {   
             InitializeComponent();
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
         }
     }
 }

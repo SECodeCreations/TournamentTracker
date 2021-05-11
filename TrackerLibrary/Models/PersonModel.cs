@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.Models
 {
     public class PersonModel
     {
+        /// <summary>
+        /// Represents the ID of the person.
+        /// </summary>
+        public int Id { get; set; }
+        
         /// <summary>
         /// Represents a team member's First Name.
         /// </summary>
