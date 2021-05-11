@@ -32,5 +32,13 @@ namespace TrackerLibrary.Models
         /// Represents a team member's Contact Number.
         /// </summary>
         public string ContactNumber { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
     }
 }

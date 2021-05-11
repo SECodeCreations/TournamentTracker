@@ -1,16 +1,6 @@
-﻿using System;
+﻿using Caliburn.Micro;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TrackerLibrary;
 using TrackerLibrary.Models;
 
@@ -21,10 +11,50 @@ namespace TrackerUI
     /// </summary>
     public partial class CreateTeamWindow : Window
     {
+
+        //private BindableCollection<PersonModel> availableTeamMembers = new BindableCollection<PersonModel>();
+        //private BindableCollection<PersonModel> selectedTeamMembers = new BindableCollection<PersonModel>();
+        private List<PersonModel> availableTeamMembers = new List<PersonModel>();
+        private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
+        
         public CreateTeamWindow()
-        {   
+        {
             InitializeComponent();
             TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+
+            //CreateSampleData();
+            LoadListData();
+            WireUpLists();
+
+            RemoveSelectedMemberButton.IsEnabled = false;
+
+        }
+
+        private void WireUpLists()
+        {
+            SelectTeamMemberDropdown.ItemsSource = null;
+            //SelectTeamMemberDropdown.DataContext = availableTeamMembers;
+            SelectTeamMemberDropdown.ItemsSource = availableTeamMembers;
+
+            TeamMembersListBox.ItemsSource = null;
+            //TeamMembersListBox.DataContext = selectedTeamMembers;
+            TeamMembersListBox.ItemsSource = selectedTeamMembers;
+        }
+
+        private void LoadListData()
+        {
+            availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
+        }
+
+        private void CreateSampleData()
+        {
+            availableTeamMembers.Add(new PersonModel { FirstName = "Steve", LastName = "Ellison" });
+            availableTeamMembers.Add(new PersonModel { FirstName = "Jimmy", LastName = "James" });
+            availableTeamMembers.Add(new PersonModel { FirstName = "Amy", LastName = "Lee" });
+
+            selectedTeamMembers.Add(new PersonModel { FirstName = "Adrian", LastName = "Jones" });
+            selectedTeamMembers.Add(new PersonModel { FirstName = "Donald", LastName = "McDonald" });
+            selectedTeamMembers.Add(new PersonModel { FirstName = "Ragnar", LastName = "Smith" });
         }
 
         private void CreateMemberButton_Click(object sender, RoutedEventArgs e)
@@ -37,7 +67,11 @@ namespace TrackerUI
                 p.EmailAddress = EmailTextBox.Text;
                 p.ContactNumber = ContactNumberTextBox.Text;
 
-                GlobalConfig.Connection.CreatePerson(p);
+                p = GlobalConfig.Connection.CreatePerson(p);
+
+                selectedTeamMembers.Add(p);
+
+                WireUpLists();
 
                 FirstNameTextBox.Text = "";
                 LastNameTextBox.Text = "";
@@ -73,6 +107,45 @@ namespace TrackerUI
             }
 
             return true;
+        }
+
+        private void AddMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            PersonModel p = (PersonModel)SelectTeamMemberDropdown.SelectedItem;
+
+            if (p != null)
+            {
+                availableTeamMembers.Remove(p);
+                selectedTeamMembers.Add(p);
+
+                WireUpLists(); 
+            }
+
+        }
+
+        private void RemoveSelectedMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            PersonModel p = (PersonModel)TeamMembersListBox.SelectedItem;
+            if (p != null)
+            {
+                selectedTeamMembers.Remove(p);
+                availableTeamMembers.Add(p);
+
+                WireUpLists(); 
+            }
+        }
+
+        private void TeamMembersListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            // Enables the Remove Selected button only if an item is selected from the TeamMembersListBox.
+            if (TeamMembersListBox.SelectedItem != null)
+            {
+                RemoveSelectedMemberButton.IsEnabled = true;
+            }
+            else
+            {
+                RemoveSelectedMemberButton.IsEnabled = false;
+            }
         }
     }
 }

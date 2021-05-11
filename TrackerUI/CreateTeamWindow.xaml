@@ -35,8 +35,14 @@
         <TextBox Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" x:Name="TeamNameTextBox" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="auto" Width="335" FontSize="20"/>
 
         <Label Grid.Row="3" Grid.Column="0" Margin="20,0,0,0" x:Name="SelectTeamMemberLabel" Content="Select Team Member" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
-        <ComboBox Grid.Row="3" Grid.Column="0" Margin="20,0,0,0" x:Name="SelectTeamMemberDropdown" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="335" FontSize="20"/>
-        <Button Grid.Row="4" Grid.Column="0" Margin="20,0,0,0" x:Name="AddMemberButton" Content="Add Member" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="154" FontSize="20"/>
+        <ComboBox Grid.Row="3" ItemsSource="{Binding PersonModel}" Grid.Column="0" Margin="20,0,0,0" x:Name="SelectTeamMemberDropdown" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="335" FontSize="20">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FullName}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            </ComboBox>
+        <Button Grid.Row="4" Grid.Column="0" Margin="20,0,0,0" x:Name="AddMemberButton" Content="Add Member" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="154" FontSize="20" Click="AddMemberButton_Click"/>
         <GroupBox Header="Add New Member" Grid.Row="6" Grid.RowSpan="5" Grid.Column="0" Margin="20,0,0,0" Foreground="White" >
             <Grid>
                 <Grid.RowDefinitions>
@@ -68,8 +74,14 @@
                 <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="CreateMemberButton" Content="Create Member" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="154" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="CreateMemberButton_Click"/>
             </Grid>
         </GroupBox>
-        <ListBox Grid.Row="3" Grid.Column="2" Grid.RowSpan="8" Margin="0,-30,0,0" x:Name="TeamMembersListBox"/>
-        <Button  Grid.Row="3" Grid.Column="3" Grid.RowSpan="8" Margin="10,0,0,0" x:Name="DeleteSelectedMemberButton" Content="Delete&#xA;Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Height="55" Width="120" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <ListBox ItemsSource="{Binding PersonModel}" Grid.Row="3" Grid.Column="2" Grid.RowSpan="8" Margin="0,-30,0,0" x:Name="TeamMembersListBox" SelectionChanged="TeamMembersListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FullName}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button  Grid.Row="3" Grid.Column="3" Grid.RowSpan="8" Margin="10,0,0,0" x:Name="RemoveSelectedMemberButton" Content="Remove&#xA;Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Height="55" Width="120" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="RemoveSelectedMemberButton_Click" />
 
         <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2" x:Name="CreateTeamButton" Content="Create Team" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="200" FontSize="20" Background="#FF80D1FF" BorderBrush="#FF00A3FF" FontWeight="Bold" Foreground="#FF2E2E2E"/>
 

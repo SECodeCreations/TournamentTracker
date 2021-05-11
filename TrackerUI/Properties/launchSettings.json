@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TrackerUI": {
+      "commandName": "Project",
+      "sqlDebugging": true,
+      "nativeDebugging": true
+    }
+  }
+}
