@@ -25,7 +25,7 @@ namespace TrackerUI
         public CreatePrizeWindow()
         {
             InitializeComponent();
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
         }
 
         private void CreatePrizeButton_Click(object sender, RoutedEventArgs e)
