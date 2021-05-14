@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height=".3*" />
+            <RowDefinition Height="0.3*" />
             <RowDefinition Height="1.1*" />
             <RowDefinition Height="1.1*" />
             <RowDefinition Height="*" />
@@ -29,21 +29,87 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" Grid.Column="0" Margin="20,10,0,0" x:Name="HeaderLabel" Content="Create Team" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="28" Height="auto" Width="auto"/>
+        <Label Grid.Row="0" 
+               Grid.Column="0" 
+               Margin="20,10,0,0" 
+               x:Name="HeaderLabel" 
+               Content="Create Team" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Foreground="White" 
+               FontSize="28" 
+               Height="auto" 
+               Width="auto"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" x:Name="TeamNameLabel" Content="Team Name" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
-        <TextBox Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" x:Name="TeamNameTextBox" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="auto" Width="335" FontSize="20"/>
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="0" 
+            Margin="20,0,0,0" 
+            x:Name="TeamNameLabel" 
+            Content="Team Name" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Foreground="White" 
+            FontSize="20" 
+            Height="auto" 
+            Width="auto"/>
+        <TextBox Grid.Row="2" 
+                 Grid.Column="0" 
+                 Margin="20,0,0,0" 
+                 x:Name="TeamNameTextBox" 
+                 HorizontalAlignment="Left" 
+                 Text="" TextWrapping="Wrap" 
+                 VerticalAlignment="Bottom" 
+                 Height="auto" 
+                 Width="335" 
+                 FontSize="20"/>
 
-        <Label Grid.Row="3" Grid.Column="0" Margin="20,0,0,0" x:Name="SelectTeamMemberLabel" Content="Select Team Member" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="auto" Width="auto"/>
-        <ComboBox Grid.Row="3" ItemsSource="{Binding PersonModel}" Grid.Column="0" Margin="20,0,0,0" x:Name="SelectTeamMemberDropdown" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="335" FontSize="20">
+        <Label Grid.Row="3" 
+               Grid.Column="0" 
+               Margin="20,0,0,0" 
+               x:Name="SelectTeamMemberLabel" 
+               Content="Select Team Member" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Foreground="White" 
+               FontSize="20" 
+               Height="auto" 
+               Width="auto"/>
+        
+        <ComboBox Grid.Row="3" 
+                  ItemsSource="{Binding PersonModel}" 
+                  Grid.Column="0" 
+                  Margin="20,0,0,0" 
+                  x:Name="SelectTeamMemberDropdown" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Bottom" 
+                  Width="335" 
+                  FontSize="20">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding FullName}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
             </ComboBox>
-        <Button Grid.Row="4" Grid.Column="0" Margin="20,0,0,0" x:Name="AddMemberButton" Content="Add Member" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="154" FontSize="20" Click="AddMemberButton_Click"/>
-        <GroupBox Header="Add New Member" Grid.Row="6" Grid.RowSpan="5" Grid.Column="0" Margin="20,0,0,0" Foreground="White" >
+        
+        <Button Grid.Row="4" 
+                Grid.Column="0" 
+                Margin="20,0,0,0" 
+                x:Name="AddMemberButton" 
+                Content="Add Member" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom" 
+                Height="50" 
+                Width="154" 
+                FontSize="20" 
+                Click="AddMemberButton_Click"/>
+        <GroupBox Header="Add New Member" 
+                  Grid.Row="6" 
+                  Grid.RowSpan="5" 
+                  Grid.Column="0" 
+                  Margin="20,0,0,0" 
+                  Foreground="White" >
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height=".2*"/>
@@ -83,7 +149,7 @@
         </ListBox>
         <Button  Grid.Row="3" Grid.Column="3" Grid.RowSpan="8" Margin="10,0,0,0" x:Name="RemoveSelectedMemberButton" Content="Remove&#xA;Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Height="55" Width="120" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="RemoveSelectedMemberButton_Click" />
 
-        <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2" x:Name="CreateTeamButton" Content="Create Team" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="200" FontSize="20" Background="#FF80D1FF" BorderBrush="#FF00A3FF" FontWeight="Bold" Foreground="#FF2E2E2E"/>
+        <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2" x:Name="CreateTeamButton" Content="Create Team" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="200" FontSize="20" Background="#FF80D1FF" BorderBrush="#FF00A3FF" FontWeight="Bold" Foreground="#FF2E2E2E" Click="CreateTeamButton_Click"/>
 
     </Grid>
 </Window>

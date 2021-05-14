@@ -120,7 +120,6 @@ namespace TrackerUI
 
                 WireUpLists(); 
             }
-
         }
 
         private void RemoveSelectedMemberButton_Click(object sender, RoutedEventArgs e)
@@ -146,6 +145,17 @@ namespace TrackerUI
             {
                 RemoveSelectedMemberButton.IsEnabled = false;
             }
+        }
+
+        private void CreateTeamButton_Click(object sender, RoutedEventArgs e)
+        {
+            TeamModel t = new TeamModel();
+            t.TeamName = TeamNameTextBox.Text;
+            t.TeamMembers = selectedTeamMembers;
+
+            t = GlobalConfig.Connection.CreateTeam(t);
+
+            //TODO - If we aren't closing this form after creating a team, reset the form.
         }
     }
 }
