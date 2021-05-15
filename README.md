@@ -1,15 +1,20 @@
-# TournamentTracker
+## TournamentTracker
+
+
+This version has been coded in WPF (Original course was coded in WinForms).
+
 
 C# Tournament Tracker Course series by Tim Corey @ https://iamtimcorey.com.
 
+
 Youtube playlist: https://www.youtube.com/playlist?list=PLLWMQd6PeGY3t63w-8MMIjIyYS7MsFcCi.
 
-Tim Corey's Social Media Links:
 
-Patreon: https://www.patreon.com/IAmTimCorey
-Twitter: https://twitter.com/IAmTimCorey
-Facebook: https://www.facebook.com/IAmTimCorey/
+# Tim Corey's Social Media Links:
 
-This version has been coded in WPF (Original course was coded in WinForms).
+* Patreon: https://www.patreon.com/IAmTimCorey
+* Twitter: https://twitter.com/IAmTimCorey
+* Facebook: https://www.facebook.com/IAmTimCorey/
+
 
 *** Project was created entirely by Tim Corey - I am but a mere student ***
