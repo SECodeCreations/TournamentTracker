@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrackerUI"
         mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         Title="Create Prize" Height="460" Width="400" Background="#FF2E2E2E" FontSize="16" Icon="/iconfinder_icon-clipboard_211649.png">
     <Grid>
         <Grid.ColumnDefinitions>
