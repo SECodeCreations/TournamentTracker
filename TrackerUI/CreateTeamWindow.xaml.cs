@@ -11,7 +11,6 @@ namespace TrackerUI
     /// </summary>
     public partial class CreateTeamWindow : Window
     {
-
         //private BindableCollection<PersonModel> availableTeamMembers = new BindableCollection<PersonModel>();
         //private BindableCollection<PersonModel> selectedTeamMembers = new BindableCollection<PersonModel>();
         private List<PersonModel> availableTeamMembers = new List<PersonModel>();
@@ -20,7 +19,7 @@ namespace TrackerUI
         public CreateTeamWindow()
         {
             InitializeComponent();
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
 
             //CreateSampleData();
             LoadListData();
