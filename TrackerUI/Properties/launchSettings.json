@@ -3,7 +3,7 @@
     "TrackerUI": {
       "commandName": "Project",
       "sqlDebugging": true,
-      "nativeDebugging": true
+      "nativeDebugging": false
     }
   }
 }
