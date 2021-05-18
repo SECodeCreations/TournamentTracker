@@ -106,7 +106,7 @@
                 VerticalAlignment="Top" 
                 Width="91" 
                 Height="30" 
-                FontSize="14"/>
+                FontSize="14" Click="CreateNewTeamButton_Click"/>
 
         <ComboBox Grid.Row="4" 
                   Grid.Column="0" 
@@ -141,7 +141,7 @@
                 VerticalAlignment="Center" 
                 Height="50"
                 Width="120" 
-                FontSize="20"/>
+                FontSize="20" Click="CreatePrizeButton_Click"/>
 
         <ListBox Grid.Row="3" 
                  Grid.Column="2" 
@@ -169,13 +169,13 @@
         <Button Grid.Row="3"
             Grid.Column="3" 
                 Margin="10,0,0,0" 
-                x:Name="DeleteSelectedTeamButton" 
+                x:Name="RemoveSelectedTeamButton" 
             HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Height="55" 
                 Width="120" 
-                FontSize="18">
-            <TextBlock Text="Delete Selected" 
+                FontSize="18" Click="RemoveSelectedTeamButton_Click">
+            <TextBlock Text="Remove Selected" 
                            TextWrapping="Wrap"
                        TextAlignment="Center"/>
         </Button>
@@ -200,20 +200,20 @@
             ItemsSource="{Binding PrizeModel}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding PrizeName}"/>
+                    <TextBlock Text="{Binding PlaceName}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Grid.Row="7"
             Grid.Column="3" 
                 Margin="10,0,0,0" 
-                x:Name="DeleteSelectedPrizeButton" 
+                x:Name="RemoveSelectedPrizeButton" 
             HorizontalAlignment="Left" 
                 VerticalAlignment="Center" 
                 Height="55" 
                 Width="120" 
-                FontSize="18">
-            <TextBlock Text="Delete Selected"
+                FontSize="18" Click="RemoveSelectedPrizeButton_Click">
+            <TextBlock Text="Remove Selected"
                        TextWrapping="Wrap"
                        TextAlignment="Center"/>
         </Button>
@@ -230,6 +230,6 @@
                 Background="#FF80D1FF" 
                 BorderBrush="#FF00A3FF" 
                 FontWeight="Bold" 
-                Foreground="#FF2E2E2E"/>
+                Foreground="#FF2E2E2E" Click="CreateTournamentButton_Click"/>
     </Grid>
 </Window>
