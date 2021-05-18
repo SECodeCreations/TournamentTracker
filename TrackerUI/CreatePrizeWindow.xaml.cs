@@ -22,10 +22,13 @@ namespace TrackerUI
     /// </summary>
     public partial class CreatePrizeWindow : Window
     {
-        public CreatePrizeWindow()
+        IPrizeRequester callingForm;
+
+        public CreatePrizeWindow(IPrizeRequester caller)
         {
             InitializeComponent();
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+            callingForm = caller;
         }
 
         private void CreatePrizeButton_Click(object sender, RoutedEventArgs e)
@@ -40,10 +43,13 @@ namespace TrackerUI
 
                 GlobalConfig.Connection.CreatePrize(model);
 
-                PlaceNameTextBox.Text = "";
-                PlaceNumberTextBox.Text = "";
-                PrizeAmountTextBox.Text = "0";
-                PrizePercentageTextBox.Text = "0";
+                callingForm.PrizeComplete(model);
+                this.Close();
+
+                //PlaceNameTextBox.Text = "";
+                //PlaceNumberTextBox.Text = "";
+                //PrizeAmountTextBox.Text = "0";
+                //PrizePercentageTextBox.Text = "0";
 
             }
             else

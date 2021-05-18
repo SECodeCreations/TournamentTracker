@@ -15,15 +15,18 @@ namespace TrackerUI
         //private BindableCollection<PersonModel> selectedTeamMembers = new BindableCollection<PersonModel>();
         private List<PersonModel> availableTeamMembers = new List<PersonModel>();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
+        private ITeamRequester callingForm;
         
-        public CreateTeamWindow()
+        public CreateTeamWindow(ITeamRequester caller)
         {
             InitializeComponent();
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
 
             //CreateSampleData();
             LoadListData();
             WireUpLists();
+
+            callingForm = caller;
 
             RemoveSelectedMemberButton.IsEnabled = false;
 
@@ -152,9 +155,10 @@ namespace TrackerUI
             t.TeamName = TeamNameTextBox.Text;
             t.TeamMembers = selectedTeamMembers;
 
-            t = GlobalConfig.Connection.CreateTeam(t);
+            GlobalConfig.Connection.CreateTeam(t);
 
-            //TODO - If we aren't closing this form after creating a team, reset the form.
+            callingForm.TeamComplete(t);
+            this.Close();
         }
     }
 }
