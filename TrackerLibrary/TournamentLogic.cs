@@ -5,21 +5,99 @@ using System.Text;
 using System.Threading.Tasks;
 using TrackerLibrary.Models;
 
+
+//TODO - GO BACK THROUGH LESSON 18 AND ADD NOTES TO UNDERSTAND THE LOGIC.
 namespace TrackerLibrary
 {
     public static class TournamentLogic
-    {
-        // Order our list randomly - we want to randomise who gets picked in the rounds.
-        // Check if the list is big enough - if not, then add in byes.
-        // For a tournament to work, you need "2 to the N power (i.e. 2*2*2*2*2 etc)".
-        // Create our first round of matchups.
-        // Create every round after that (next rounds will divide quantity of previous rounds by 2).
-
+    {   /// <summary>        
+        /// Order our list randomly - we want to randomise who gets picked in the rounds.
+        /// Check if the list is big enough - if not, then add in byes.
+        /// For a tournament to work, you need "2 to the N power (i.e. 2*2*2*2*2 etc)".
+        /// Create our first round of matchups.
+        /// Create every round after that (next rounds will divide quantity of previous rounds by 2).
+        /// </summary>
+        
         public static void CreateRounds(TournamentModel model)
         {
             List<TeamModel> randomisedTeams = RandomiseTeamOrder(model.EnteredTeams);
             int rounds = FindNumberOfRounds(randomisedTeams.Count);
+            int byes = NumberOfByes(rounds,randomisedTeams.Count);
 
+            model.Rounds.Add(CreateFirstRound(byes, randomisedTeams));
+            
+            CreateOtherRounds(model, rounds);
+
+        }
+
+        private static void CreateOtherRounds(TournamentModel model, int rounds)
+        {
+            int round = 2;
+            List<MatchupModel> previousRound = model.Rounds[0];
+            List<MatchupModel> currentRound = new List<MatchupModel>();
+            MatchupModel currentMatchup = new MatchupModel();
+
+            while (round <= rounds)
+            {
+                foreach (MatchupModel match in previousRound)
+                {
+                    currentMatchup.Entries.Add(new MatchupEntryModel { ParentMatchup = match });
+
+                    if (currentMatchup.Entries.Count > 1)
+                    {
+                        currentMatchup.MatchupRound = round;
+                        currentRound.Add(currentMatchup);
+                        currentMatchup = new MatchupModel();
+                    }
+                }
+
+                // Cleanup
+                model.Rounds.Add(currentRound);
+                previousRound = currentRound;
+                currentRound = new List<MatchupModel>();
+                round += 1;
+            }
+        }
+
+        private static List<MatchupModel> CreateFirstRound(int byes, List<TeamModel> teams)
+        {
+            List<MatchupModel> output = new List<MatchupModel>();
+            MatchupModel curr = new MatchupModel();
+
+            foreach (TeamModel team in teams)
+            {
+                curr.Entries.Add(new MatchupEntryModel { TeamCompeting = team });
+
+                if (byes > 0 || curr.Entries.Count > 1)
+                {
+                    curr.MatchupRound = 1;
+                    output.Add(curr);
+                    curr = new MatchupModel();
+
+                    if (byes > 0)
+                    {
+                        byes -= 1;
+                    }
+                }
+            }
+
+            return output;
+        }
+
+        private static int NumberOfByes(int rounds, int numberOfTeams)
+        {
+            int output = 0;
+
+            int totalTeams = 1;
+
+            for (int i = 1; i <= rounds; i++)
+            {
+                totalTeams *= 2;
+            }
+
+            output = totalTeams - numberOfTeams;
+            
+            return output;
         }
 
         private static int FindNumberOfRounds(int teamCount)
