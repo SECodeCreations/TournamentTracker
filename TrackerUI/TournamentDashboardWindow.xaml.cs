@@ -23,7 +23,11 @@ namespace TrackerUI
         public TournamentDashboardWindow()
         {   
             InitializeComponent();
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
+            
+        }
+        public static void DatabaseConnectionType()
+        {
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile);
         }
     }
 }

@@ -27,7 +27,8 @@ namespace TrackerUI
         public CreateTournamentWindow()
         {
             InitializeComponent();
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+            TournamentDashboardWindow.DatabaseConnectionType();
+            //TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
             LoadListData();
             WireUpLists();
 

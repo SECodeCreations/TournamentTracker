@@ -27,12 +27,21 @@ namespace TrackerUI
         public CreatePrizeWindow(IPrizeRequester caller)
         {
             InitializeComponent();
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
+            TournamentDashboardWindow.DatabaseConnectionType();
+            //TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); //TODO - remove this when app is complete (needs to be in first window only - that that this is correct!).
             callingForm = caller;
         }
 
         private void CreatePrizeButton_Click(object sender, RoutedEventArgs e)
         {
+            // If the user removes the 0 from PrizeAmountTextBox or PrizePercentageTextBox (meaning they are empty or null),
+            // both textboxes are repopulated with an amount of 0 (prevents error messagebox from being displayed).
+            if (string.IsNullOrEmpty(PrizeAmountTextBox.Text) || string.IsNullOrEmpty(PrizePercentageTextBox.Text))
+            {
+                PrizeAmountTextBox.Text = "0";
+                PrizePercentageTextBox.Text = "0";
+            }
+
             if (ValidateForm())
             {
                 PrizeModel model = new PrizeModel(
