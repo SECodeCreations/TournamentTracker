@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TrackerLibrary;
+using TrackerLibrary.Models;
 
 namespace TrackerUI
 {
@@ -20,14 +21,31 @@ namespace TrackerUI
     /// </summary>
     public partial class TournamentDashboardWindow : Window
     {
+        private List<TournamentModel> tournaments = new List<TournamentModel>();
+
         public TournamentDashboardWindow()
-        {   
+        {
+            DatabaseConnectionType();
             InitializeComponent();
-            
+            LoadListData();
+            WireUpLists();
         }
+
         public static void DatabaseConnectionType()
         {
-            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile);
+            TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
         }
+
+        private void LoadListData()
+        {
+            tournaments = GlobalConfig.Connection.GetTournament_All();
+        }
+
+        private void WireUpLists()
+        {
+            LoadExistingTournamentDropdown.ItemsSource = null;
+            LoadExistingTournamentDropdown.ItemsSource = tournaments;
+        }
+
     }
 }
