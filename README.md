@@ -2,12 +2,12 @@
 
 
 This version has been coded in WPF (Original course was written in WinForms).
+
 Certain portions of the project have been coded differently to work in WPF.
  
- 
-  
  
- 
+***
+***
 C# Tournament Tracker Course series by Tim Corey @ https://iamtimcorey.com.
 
 
@@ -22,6 +22,8 @@ Youtube playlist: https://www.youtube.com/playlist?list=PLLWMQd6PeGY3t63w-8MMIjI
 * Twitter: https://twitter.com/IAmTimCorey
 * Facebook: https://www.facebook.com/IAmTimCorey/
 
+***
+***
 
 *** Project was created entirely by Tim Corey ***
 
