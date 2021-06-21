@@ -47,5 +47,19 @@ namespace TrackerUI
             LoadExistingTournamentDropdown.ItemsSource = tournaments;
         }
 
+        private void CreateTournamentButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateTournamentWindow frm = new CreateTournamentWindow();
+            frm.Show();
+        }
+
+        private void LoadTournamentButton_Click(object sender, RoutedEventArgs e)
+        {
+            TournamentModel tm = (TournamentModel)LoadExistingTournamentDropdown.SelectedItem;
+
+            TournamentViewerWindow frm = new TournamentViewerWindow(tm);
+
+            frm.Show();
+        }
     }
 }

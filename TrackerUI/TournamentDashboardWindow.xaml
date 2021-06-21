@@ -38,9 +38,20 @@
             </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>        
-        <Button Grid.Row="5" x:Name="LoadTournamentButton" Content="Load Tournament" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="200" FontSize="20"/>
+        <Button Grid.Row="5" x:Name="LoadTournamentButton" Content="Load Tournament" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="200" FontSize="20" Click="LoadTournamentButton_Click"/>
 
-        <Button Grid.Row="7" x:Name="CreateTournamentButton" Content="Create Tournament" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Width="300" FontSize="24" Background="#FF80D1FF" BorderBrush="#FF00A3FF" FontWeight="Bold" Foreground="#FF2E2E2E"/>
+        <Button Grid.Row="7" 
+                x:Name="CreateTournamentButton" 
+                Content="Create Tournament" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Height="75" 
+                Width="300" 
+                FontSize="24" 
+                Background="#FF80D1FF" 
+                BorderBrush="#FF00A3FF" 
+                FontWeight="Bold" 
+                Foreground="#FF2E2E2E" Click="CreateTournamentButton_Click"/>
 
     </Grid>
 </Window>
