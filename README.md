@@ -1,4 +1,4 @@
-## TournamentTracker written in C# and WPF.
+# TournamentTracker written in C# and WPF.
 
 
 This version has been coded in WPF (Original course was written in WinForms).
@@ -16,7 +16,7 @@ Youtube playlist: https://www.youtube.com/playlist?list=PLLWMQd6PeGY3t63w-8MMIjI
 
  
  
-# Tim Corey's Social Media Links:
+## Tim Corey's Social Media Links:
 
 * Patreon: https://www.patreon.com/IAmTimCorey
 * Twitter: https://twitter.com/IAmTimCorey
