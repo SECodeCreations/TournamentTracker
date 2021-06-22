@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TrackerLibrary;
 using TrackerLibrary.Models;
 
 namespace TrackerUI
@@ -90,6 +91,7 @@ namespace TrackerUI
             {
                 LoadMatchups((int)RoundDropdown.SelectedItem);
             }
+
             WireUpMatchupList();
         }
 
@@ -99,11 +101,58 @@ namespace TrackerUI
             {
                 if (matchups.First().MatchupRound == round)
                 {
-                    selectedMatchups = matchups;
+                    selectedMatchups.Clear();
+                    foreach (MatchupModel m in matchups)
+                    {
+                        if (m.Winner == null || UnplayedOnlyCheckbox.IsChecked == false)
+                        {
+                            selectedMatchups.Add(m);
+                        }
+                    }
                 }
             }
 
-            LoadMatchup(selectedMatchups.First());
+            if (selectedMatchups.Count > 0)
+            {
+                LoadMatchup(selectedMatchups.First());
+            }
+
+            DisplayMatchupInfo();
+            WireUpMatchupList();
+
+        }
+
+        private void DisplayMatchupInfo()
+        {
+            //TODO - see how this can be changed to be neater code - look into binding for WPF (maybe the items have to be wrapped in bindable object).
+            bool isVisible = (selectedMatchups.Count > 0);
+
+            if (selectedMatchups.Count > 0)
+            {
+                TeamOneNameLabel.Visibility = Visibility.Visible;
+                TeamOneScoreLabel.Visibility = Visibility.Visible;
+                TeamOneScoreValueTextBox.Visibility = Visibility.Visible;
+
+                VersusLabel.Visibility = Visibility.Visible;
+                ScoreButton.Visibility = Visibility.Visible;
+
+                TeamTwoNameLabel.Visibility = Visibility.Visible;
+                TeamTwoScoreLabel.Visibility = Visibility.Visible;
+                TeamTwoScoreValueTextBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TeamOneNameLabel.Visibility = Visibility.Hidden;
+                TeamOneScoreLabel.Visibility = Visibility.Hidden;
+                TeamOneScoreValueTextBox.Visibility = Visibility.Hidden;
+
+                VersusLabel.Visibility = Visibility.Hidden;
+                ScoreButton.Visibility = Visibility.Hidden;
+
+                TeamTwoNameLabel.Visibility = Visibility.Hidden;
+                TeamTwoScoreLabel.Visibility = Visibility.Hidden;
+                TeamTwoScoreValueTextBox.Visibility = Visibility.Hidden;
+            }
         }
 
         private void LoadMatchup(MatchupModel m)
@@ -118,7 +167,7 @@ namespace TrackerUI
                         TeamOneScoreValueTextBox.Text = m.Entries[0].Score.ToString();
 
                         TeamTwoNameLabel.Content = "<BYE>";
-                        TeamTwoScoreValueTextBox.Text = "0";
+                        TeamTwoScoreValueTextBox.Text = "";
                     }
                     else
                     {
@@ -153,6 +202,93 @@ namespace TrackerUI
             {
                 LoadMatchup((MatchupModel)MatchupListbox.SelectedItem);
             }
+        }
+
+        private void UnplayedOnlyCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            LoadMatchups((int)RoundDropdown.SelectedItem);
+        }
+
+        private void ScoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            MatchupModel m = (MatchupModel)MatchupListbox.SelectedItem;
+            double teamOneScore = 0;
+            double teamTwoScore = 0;
+
+            for (int i = 0; i < m.Entries.Count; i++)
+            {
+                if (i == 0)
+                {
+                    if (m.Entries[0].TeamCompeting != null)
+                    {
+                        bool scoreValid = double.TryParse(TeamOneScoreValueTextBox.Text, out teamOneScore);
+
+                        if (scoreValid)
+                        {
+                            m.Entries[0].Score = teamOneScore;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a valid score for Team 1");
+                            return;
+                        }
+                    }
+                }
+
+                if (i == 1)
+                {
+                    if (m.Entries[1].TeamCompeting != null)
+                    {
+                        bool scoreValid = double.TryParse(TeamTwoScoreValueTextBox.Text, out teamTwoScore);
+
+                        if (scoreValid)
+                        {
+                            m.Entries[1].Score = teamTwoScore;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a valid score for Team 2");
+                            return;
+                        }
+                    }
+                }
+            }
+            if (teamOneScore > teamTwoScore)
+            {
+                // Team one is the winner
+                // Take Team Entry and put it into the matchup as the winner.
+                m.Winner = m.Entries[0].TeamCompeting;
+            }
+            else if (teamTwoScore > teamOneScore)
+            {
+                m.Winner = m.Entries[1].TeamCompeting;
+            }
+            else
+            {
+                MessageBox.Show("Games cannot result in a draw.");
+            }
+
+            foreach (List<MatchupModel> round in tournament.Rounds)
+            {
+                foreach (MatchupModel rm in round)
+                {
+                    foreach (MatchupEntryModel me in rm.Entries)
+                    {
+                        if (me.ParentMatchup != null)
+                        {
+                            if (me.ParentMatchup.Id == m.Id)
+                            {
+                                me.TeamCompeting = m.Winner;
+                                GlobalConfig.Connection.UpdateMatchup(rm);
+                            } 
+                        }
+                    }
+                }
+            }
+
+            LoadMatchups((int)RoundDropdown.SelectedItem);
+
+            GlobalConfig.Connection.UpdateMatchup(m);
         }
     }
 }
